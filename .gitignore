@@ -1,0 +1,23 @@
+# 依赖
+node_modules/
+
+# 本地运行数据（含演示账号密码哈希；首次启动会自动重新播种）
+data/db.json
+data/*.json
+
+# 环境变量（含密钥时不入库）
+.env
+.env.local
+
+# WorkBuddy 应用绑定与工作区元数据
+.wbapp_*.genie
+.workbuddy/
+
+# 截图（体积较大，按需取消注释）
+# docs/screenshots/
+
+# 杂项
+*.log
+.DS_Store
+.idea/
+.vscode/

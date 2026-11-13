@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="FuturePath AI —— 面向青少年与家长的 AI 生涯规划平台（可运行 MVP）">
+  <meta name="theme-color" content="#f8f6f1">
+  <title>FuturePath AI · 青少年生涯探索</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230f766e'/%3E%3Cpath d='M9 22c4-1 6-4 7-11 1 7 3 10 7 11' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    #boot-fail { display: none; max-width: 560px; margin: 18vh auto; padding: 0 20px; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2937; line-height: 1.7; }
+    #boot-fail h1 { font-size: 20px; margin-bottom: 10px; }
+    #boot-fail button { margin-top: 16px; padding: 10px 20px; border: 0; border-radius: 10px; background: #0f766e; color: #fff; font-size: 15px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">跳到主要内容</a>
+  <div id="app" aria-live="polite"></div>
+  <div id="toast" aria-live="polite"></div>
+  <div id="modal"></div>
+  <div id="boot-fail">
+    <h1>页面资源加载失败</h1>
+    <p>网络或分享链接的网关出现波动，部分文件没有取到。点击下面按钮重试，通常一次即可恢复。</p>
+    <button onclick="sessionStorage.removeItem('fp_boot_retry');location.reload()">重新加载</button>
+  </div>
+  <noscript>
+    <div style="padding:32px;font-family:sans-serif">
+      <h1>FuturePath AI 需要启用 JavaScript</h1>
+      <p>本应用为交互式探索工具，请在浏览器设置中启用 JavaScript 后刷新页面。</p>
+    </div>
+  </noscript>
+  <script>
+  /* 分享型反向代理偶发把静态文件判成 404，
+     这里对样式与入口模块做有限次自动重试，避免用户看到空白页。 */
+  (function () {
+    var KEY = 'fp_boot_retry';
+    var tries = Number(sessionStorage.getItem(KEY) || 0);
+    function fail() {
+      if (tries >= 4) {
+        document.getElementById('boot-fail').style.display = 'block';
+        return;
+      }
+      sessionStorage.setItem(KEY, String(tries + 1));
+      setTimeout(function () { location.reload(); }, 400);
+    }
+    window.addEventListener('error', function (e) {
+      var t = e.target;
+      if (t && (t.tagName === 'LINK' || t.tagName === 'SCRIPT')) fail();
+    }, true);
+    var link = document.querySelector('link[rel="stylesheet"]');
+    if (link && !link.sheet) {
+      // 样式已在解析阶段失败，直接进入重试流程
+      setTimeout(function () { if (!document.querySelector('link[rel="stylesheet"]').sheet) fail(); }, 800);
+    }
+    import('./app.js').then(function () {
+      sessionStorage.removeItem(KEY);
+    }).catch(fail);
+  })();
+  </script>
+</body>
+</html>
