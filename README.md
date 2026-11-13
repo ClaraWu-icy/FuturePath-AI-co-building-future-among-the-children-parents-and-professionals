@@ -33,7 +33,6 @@
   平台级统计（如低带宽人数）不把临时档案算进去。
 - **界面标识**：顶栏有「公开体验」标签，学生首页有一条提示条，
   左下角常驻「创建正式档案」按钮。MVP 不做数据迁移——创建正式档案后用同样两份量表再答一遍即可，
-- 对本地开发同样可用：`npm start` 后打开 <http://127.0.0.1:4310>，不登录直接点那张卡。
 
 ---
 
@@ -41,7 +40,8 @@
 
 ```bash
 cd futurepath-ai
-npm start            # 启动 http://127.0.0.1:4310
+npm start            # 启动 [http://127.0.0.1:4310](https://futurepath-ai-33500.app.workbuddy.host/?sharecode=JYXULBIT5P
+)
 ```
 
 首次启动前若 `data/db.json` 不存在，服务会自动建空库。**推荐直接载入演示数据：**
@@ -64,7 +64,8 @@ npm start
 | `npm test` | 端到端接口测试（独立临时数据目录，不影响开发数据） |
 | `npm run reset` | 清空所有数据 |
 
-打开 <http://127.0.0.1:4310>。
+打开 <[http://127.0.0.1:4310](https://futurepath-ai-33500.app.workbuddy.host/?sharecode=JYXULBIT5P
+)>。
 
 ### 演示账号（密码均为 `demo123`）
 
@@ -77,9 +78,6 @@ npm start
 | `counselor` | 规划师（周老师） | 已认证（演示数据），可查看苏念的审核记录 |
 
 也可以**注册**：落地页 → 创建档案 → 选择学生 / 家长 / 规划师。
-
-> 直接进入某页的调试链接：`http://127.0.0.1:4310/#/login?as=xiaoyu&to=/student/analysis`
-> （仅用于演示与截图，`as` 为演示账号名）
 
 ---
 
