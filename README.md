@@ -9,9 +9,9 @@
 
 ---
 
-## 0. 在线访问（已发布）
+## 0. 在线访问
 
-**分享链接：** https://futurepath-ai-33500.app.workbuddy.host/?sharecode=JYXULBIT5P
+**链接：** https://futurepath-ai-33500.app.workbuddy.host/?sharecode=JYXULBIT5P
 
 - 链接自带访问凭证，任何人打开即可进入演示环境；首次打开后浏览器会记住会话，之后可直接访问域名。
 - 服务端已适配该网关：Cookie 会被剥离、`Authorization` 会被网关自己的 token 覆盖，
